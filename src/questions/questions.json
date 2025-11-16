@@ -109,11 +109,13 @@
       {
         "id": 1,
         "label1": "Yes",
-        "label2": ""
+        "label2": "",
+        "label3":"Yes"
       },{
         "id": 2,
         "label1": "No",
-        "label2":""
+        "label2":"",
+        "label3":"No"
       }
     ]
   },
@@ -252,15 +254,18 @@
       {
         "id": 1,
         "label1": "None",
-        "label2": "0km"
+        "label2": "0kg",
+        "label3": 0
       },{
         "id": 2,
-        "label1": "samll distance",
-        "label2": "200-300km"
+        "label1": "samll amount",
+        "label2": "1 - 2kg",
+        "label3":  1.5
       },{
         "id":3,
-        "label1":"large distance",
-        "label2": "400-500km"
+        "label1":"large amount",
+        "label2": "3-4",
+        "label3": 3.5
       }
     ]
   },
@@ -274,15 +279,18 @@
       {
         "id": 1,
         "label1": "None",
-        "label2": ""
+        "label2": "",
+        "label3": "None"
       },{
         "id": 2,
         "label1": "Vegeterian",
-        "label2": ""
+        "label2": "",
+        "label3": "Vegeterian"
       },{
         "id":3,
         "label1":"Vegan",
-        "label2": ""
+        "label2": "",
+        "label3": "Vegan"
       }
     ]
   },
@@ -296,15 +304,18 @@
       {
         "id": 1,
         "label1": "None",
-        "label2": ""
+        "label2": "",
+        "label3": "low"
       },{
         "id": 2,
         "label1": "couple times a week",
-        "label2": "2 - 3"
+        "label2": "2 - 3",
+        "label3":"average"
       },{
         "id":3,
         "label1":"everyday",
-        "label2": ">=7 servings"
+        "label2": ">=7 servings",
+        "label3":"high"
       }
     ]
   },
@@ -318,15 +329,18 @@
       {
         "id": 1,
         "label1": "None",
-        "label2": ""
+        "label2": "",
+        "label3": "low"
       },{
         "id": 2,
         "label1": "couple times a week",
-        "label2": "2 - 3"
+        "label2": "2 - 3",
+        "label3":"average"
       },{
         "id":3,
         "label1":"everyday",
-        "label2": ">=7 servings"
+        "label2": ">=7 servings",
+        "label3":"high"
       }
     ]
   },
@@ -340,15 +354,18 @@
       {
         "id": 1,
         "label1": "None",
-        "label2": ""
+        "label2": "",
+        "label3": 0
       },{
         "id": 2,
         "label1": "couple times a week",
-        "label2": "2 - 3"
+        "label2": "2 - 3",
+        "label3": 2.5
       },{
         "id":3,
         "label1":"everyday",
-        "label2": ">=7 servings"
+        "label2": ">=7 servings",
+        "label3": 8
       }
     ]
   },
@@ -362,11 +379,13 @@
       {
         "id": 1,
         "label1": "Yes",
-        "label2": ""
+        "label2": "",
+        "label3": "Yes"
       },{
         "id": 2,
         "label1": "No",
-        "label2": ""
+        "label2": "",
+        "label3": "No"
       }
     ]
   },
@@ -380,7 +399,8 @@
       {
         "id": 1,
         "label1": "None",
-        "label2": ""
+        "label2": "",
+        "label3": 0
       }
     ]
   },
@@ -394,7 +414,8 @@
       {
         "id": 1,
         "label1": "None",
-        "label2": ""
+        "label2": "",
+        "label3": 0
       }
     ]
   }

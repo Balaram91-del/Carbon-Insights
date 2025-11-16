@@ -3,8 +3,30 @@
 import q from "@/questions/questions.json"
 import router from "@/router";
 import { ref } from "vue";
+import { useFootprintStore } from "@/stores/footprintStore";
 
-const answers = ref({})
+const store = useFootprintStore();
+
+const answers = ref({
+  longFlights: null,
+  shortFlights: null,
+  gas: null,
+  electricity: null,
+  renewableEnergy: null,
+  car: null,
+  motorcycle: null,
+  bus: null,
+  metro: null,
+  intercityTrain: null,
+  dogs: null,
+  cats: null,
+  diet: '',
+  chicken: '',
+  redMeat: '',
+  publicTransport: '',
+  pets: ''
+});
+
 
 const currentIndex = ref(0)
 
@@ -26,10 +48,26 @@ function nextIndex() {
     }
     currentIndex.value++;
     if (currentIndex.value >= q.length) {
+      store.totalEmission = calculateCarbonFootprint();
+      store.flightEmission = flightEmissionCalc();
+      store.petEmission = petEmissionCalc();
+      store.cookintGasEmission = cookingGasEmissionCalc();
+      store.electriciyEmission = electricityEmissionCalc();
+      store.transportEmission = transportEmissionCalc();
+      store.foodEmission = foodEmissionCalculator();
+
       router.push({name:'CarbonFootprintAnalysis'})
     }
   }
   else {
+    store.totalEmission = calculateCarbonFootprint();
+    store.flightEmission = flightEmissionCalc();
+    store.petEmission = petEmissionCalc();
+    store.cookingGasEmission = cookingGasEmissionCalc();
+    store.electricityEmission = electricityEmissionCalc();
+    store.transportEmission = transportEmissionCalc();
+    store.foodEmission = foodEmissionCalculator();
+      
     router.push({ name: 'CarbonFootprintAnalysis' })
     console.log(answers.value)
   }
@@ -40,10 +78,58 @@ function selectAnswers(value) {
   answers.value[currentName] = value;
 }
 
-const flightEmission = (answers.value["longFlights"] * 148 * 4000 + answers.value['shortFlights'] * 246 * 1500)/1000;
+function flightEmissionCalc() {
+  return (((answers.value["longFlights"] || 0) * 148 * 4000 +
+          (answers.value['shortFlights'] || 0) * 246 * 1500) / 1000);
+}
+
+function petEmissionCalc() {
+  return ((answers.value['dogs'] || 0) * 770 +
+          (answers.value['cats'] || 0) * 310);
+}
+
+function cookingGasEmissionCalc() {
+  return ((answers.value['gas'] || 0) * 12 * 2.8);
+}
+
+function electricityEmissionCalc() {
+  return ((answers.value['electricity'] || 0) -
+          (answers.value['renewableEnergy'] || 0)) * 0.82;
+}
+
+function transportEmissionCalc() {
+  return ((((answers.value['car'] || 0) * 170 +
+           (answers.value['motorcycle'] || 0) * 114 +
+           (answers.value['bus'] || 0) * 97 +
+           (answers.value['metro'] || 0) * 28 +
+           (answers.value['intercityTrain'] || 0) * 35) * 52) / 1000);
+}
+
+
+function foodEmissionCalculator() {
+  let dietEmission = 0;  
+  if (answers.value['diet'] == 'Vegan') {
+    dietEmission = 3 * 365;
+  }
+  if (answers.value['diet'] == 'Vegeterian') {
+    dietEmission = 4 * 365;
+  }
+  if (answers.value['chicken'] == 'low' || answers.value['redMeat'] == 'low') {
+    dietEmission = 4.67 * 365; 
+  }
+  if (answers.value['chicken'] == 'average' || answers.value['redMeat'] == 'average') {
+    dietEmission = 5.93 * 365; 
+  }
+  if (answers.value['chicken'] == 'high' || answers.value['redMeat'] == 'high') {
+    dietEmission = 7 * 365; 
+  }
+
+  return dietEmission;
+
+}
 
 function calculateCarbonFootprint() {
-  
+  return flightEmissionCalc() + petEmissionCalc() + foodEmissionCalculator() + transportEmissionCalc() + cookingGasEmissionCalc() + electricityEmissionCalc();
 }
 
 </script>
@@ -58,7 +144,7 @@ function calculateCarbonFootprint() {
       <div class="question-container">
         <h1>{{ q[currentIndex].label }}</h1>
         <p>{{ q[currentIndex].text }}</p>
-        <button v-for="option in q[currentIndex].options" @click="selectAnswers(option.label1); nextIndex()">
+        <button v-for="option in q[currentIndex].options" @click="selectAnswers(option.label3); nextIndex()">
           <p>{{ option.label1 }}</p>
           <p>{{ option.label2 }}</p>
         </button>
