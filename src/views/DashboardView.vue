@@ -1,8 +1,15 @@
 <script setup>
+import { supabase } from '@/Clients/Supabase';
+import router from '@/router';
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
 const showSidebar = ref(true);
+
+async function Logout() {
+  const { error } = await supabase.auth.signOut();
+  router.push({name:'home'})
+}
 </script>
 
 <template>
@@ -42,7 +49,7 @@ const showSidebar = ref(true);
       </div>
       <div>
         <i class="ri-logout-circle-r-line"></i>
-        <button>Logout</button>
+        <button @click="Logout">Logout</button>
       </div>
       </div>
     </div>
@@ -167,6 +174,10 @@ main{
   background-color: transparent;
   border: none;
   color: white;
+  cursor: pointer;
+}
+
+.sidebar button:hover{
   cursor: pointer;
 }
 </style>

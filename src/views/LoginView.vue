@@ -16,7 +16,7 @@ async function login() {
     console.log(error);
   }
   else {
-    router.push({name:'dashboard'})
+    router.push({name:'dashboardHome'})
   }
   
 }
@@ -30,6 +30,7 @@ async function login() {
       <p>Forgot password ?</p>
       <button @click="login">Login</button>
     </div>
+    <p>Don't have an account? signUp</p>
     
   </div>
 </template>
@@ -72,5 +73,10 @@ async function login() {
     border-radius: 20px;
     color: white;
     cursor: pointer;
+    font-family: 'Raleway';
+  }
+
+  p{
+    color: #0d4d10;
   }
 </style>

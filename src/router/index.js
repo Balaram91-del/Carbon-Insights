@@ -10,6 +10,8 @@ import CarbonFootprintAnalysis from '@/views/CarbonFootprintAnalysis.vue'
 import LoginView from '@/views/LoginView.vue'
 import SignupView from '@/views/SignupView.vue'
 import LettingUserKnowMonthly from '@/views/LettingUserKnowMonthly.vue'
+import { supabase } from '@/Clients/Supabase'
+import UnauthorizedView from '@/views/UnauthorizedView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +50,7 @@ const router = createRouter({
           path: "",
           name: 'dashboardHome',
           component: DashboardHomeView,
+          meta: {requiresAuth: true}
         },
         {
           path: "about",
@@ -63,7 +66,8 @@ const router = createRouter({
         {
           path: "settings",
           name: "settings",
-          component:SettingsView,
+          component: SettingsView,
+          meta: {requiresAuth: true}
         },
         {
           path: 'FAQ',
@@ -79,10 +83,36 @@ const router = createRouter({
           path: "monthlyCarbonFootprint",
           name: "MonthlyCarbonFootprint",
           component: LettingUserKnowMonthly,
+        },
+        {
+          path: "unauthorized",
+          name: "Unauthorized",
+          component: UnauthorizedView,
         }
       ]
     },
   ],
+})
+
+//get user
+async function getUser(next) {
+  let localUser = await supabase.auth.getSession();
+  if (localUser.data.session == null) {
+    next("unauthorized")
+  }
+  else {
+    next();
+  }
+}
+
+//auth requirements
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    getUser(next);
+  }
+  else {
+    next();
+  }
 })
 
 export default router

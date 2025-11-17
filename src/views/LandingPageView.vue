@@ -35,7 +35,8 @@ const showLogin = ref(false);
          Small changes can make a big difference 
       </p>
       <div class="btn-container">
-        <router-link class="joinus-btn">Join Us</router-link>
+        <!-- <router-link class="joinus-btn" @click.prevent="showLogin = true">Join Us</router-link> -->
+        <button class="joinus-btn" @click="showLogin = true">Join Us</button>
         <router-link class="cfc-btn" to="/dashboard/carbonFootprintCalculator">Calculate Carbon Footprint</router-link>
       </div>
     </div>
@@ -104,12 +105,15 @@ section{
   border-radius: 30px;
   padding: 12px 30px;
   font-size: 1.2rem;
+  border: none;
+  color: white;
 }
 
 .joinus-btn:hover{
   background: transparent;
   border: solid white 2px;
   color: white;
+  cursor: pointer;
 }
 
 .cfc-btn{
