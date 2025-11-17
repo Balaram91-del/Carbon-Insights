@@ -13,7 +13,7 @@ const distanceCarNeedsToDrive = (carbonFootprint * 1000 * 1000 / 170).toFixed(2)
 <template>
   <div class="container">
     <div class="carbon-footprint-container">
-      <h1>Your carbon footprint is <br> <strong>{{ carbonFootprint }}</strong> tons <br>annually</h1>
+      <h1>Your carbon footprint is <br> <strong>{{ carbonFootprint }}</strong> tons <br>this month</h1>
       <h3>It is equivalent to driving a petrol car <strong>{{ distanceCarNeedsToDrive }}</strong> kms </h3>
     </div>
     <div class="graph-container">

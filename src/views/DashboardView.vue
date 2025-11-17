@@ -26,7 +26,7 @@ const showSidebar = ref(true);
       </div>
       <div>
         <i class="ri-calculator-line"></i>
-        <router-link to="/dashboard/carbonFootprintCalculator">Carbon Footprint</router-link>
+        <router-link to="/dashboard/monthlyCarbonFootprint">Carbon Footprint</router-link>
       </div>
       <div>
         <i class="ri-info-i"></i>

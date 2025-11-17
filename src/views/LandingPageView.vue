@@ -15,8 +15,8 @@ const showLogin = ref(false);
       <div class="login-container">
         <div class="login-from">
           <div class="login-signup-holder">
-            <router-link to="" class="login-routerlink">Login</router-link>
-            <router-link to="" class="signup-routerlink">Sign Up</router-link>
+            <router-link :to="{name:'login'}" class="login-routerlink">Login</router-link>
+            <router-link :to="{name:'signup'}" class="signup-routerlink">Sign Up</router-link>
           </div>
           <RouterView />
         </div>

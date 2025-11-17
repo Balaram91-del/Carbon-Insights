@@ -3,7 +3,7 @@
     "id": 1,
     "img":"https://img.icons8.com/cute-clipart/64/airplane-mode-on.png",
     "name":"longFlights",
-    "label":"How many long flights do you take in a year ?",
+    "label":"How many long flights did you take in this month ?",
     "text":"Count any flights longer than 3 hours",
     "options":[
       {
@@ -28,7 +28,7 @@
     "id": 2,
     "img":"https://img.icons8.com/scribby/50/airplane-mode-on.png",
     "name":"shortFlights",
-    "label":"How many short flights do you take in a year ?",
+    "label":"How many short flights did you take this month ?",
     "text":"Count any flights less than 3 hours or domestic flights",
     "options":[
       {
@@ -173,7 +173,7 @@
     "id": 8,
     "img":"https://img.icons8.com/external-justicon-flat-justicon/64/external-train-transportation-justicon-flat-justicon-1.png",
     "name":"intercityTrain",
-    "label":"How many kilometers do you trabel by intercity train annualy ?",
+    "label":"How many kilometers do you trabel by intercity train this month ?",
     "text":"",
     "options":[
       {
@@ -223,7 +223,7 @@
     "id": 10,
     "img":"https://img.icons8.com/external-phatplus-lineal-color-phatplus/64/external-ecology-school-phatplus-lineal-color-phatplus.png",
     "name":"renewableEnergy",
-    "label":"How much renewable electricity do you produce or purchase (in kwh) ?",
+    "label":"How much renewable electricity do you produce or purchase (in kwh) monthly ?",
     "text":"wind, solar, geothermal etc are considered as renewable energy",
     "options":[
       {

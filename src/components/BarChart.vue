@@ -34,8 +34,8 @@ export default {
         ],
         datasets: [
           {
-            label: 'CO₂ Emissions (tons per capita)',
-            data: [this.store.totalEmission / 1000, 4.68, 14.4, 2.05, 9.40],
+            label: 'CO₂ Emissions (tons per capita per month)',
+            data: [this.store.totalEmission / 1000, 4.68/12, 14.4/12, 2.05/12, 9.40/12],
             backgroundColor: [
               '#36A2EB',
               '#9AD0F5',

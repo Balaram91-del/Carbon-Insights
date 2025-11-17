@@ -11,7 +11,7 @@ const emit = defineEmits(['loginClicked'])
 
     <ul class="menu">
       <router-link to="/">HOME</router-link>
-      <router-link to="/dashboard/carbonFootprintCalculator">CARBON FOOTPRINT</router-link>
+      <router-link to="/dashboard/monthlyCarbonFootprint">CARBON FOOTPRINT</router-link>
       <router-link to="/about">ABOUT</router-link>
       <button class="login-btn" @click.prevent="$emit('loginClicked')">LOGIN</button>
     </ul>
@@ -54,12 +54,13 @@ a {
   transition: all 0.5s ease;
 }
 
-.menu a {
+.menu a, .login-btn {
   color: white;
   transition: border 0.3s ease;
+  cursor: pointer;
 }
 
-.menu a:hover {
+.menu a:hover, .login-btn:hover {
   border-bottom: 2px solid white;
 }
 

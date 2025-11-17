@@ -84,12 +84,12 @@ function flightEmissionCalc() {
 }
 
 function petEmissionCalc() {
-  return ((answers.value['dogs'] || 0) * 770 +
-          (answers.value['cats'] || 0) * 310);
+  return ((answers.value['dogs'] || 0) * 770/12 +
+          (answers.value['cats'] || 0) * 310/12);
 }
 
 function cookingGasEmissionCalc() {
-  return ((answers.value['gas'] || 0) * 12 * 2.8);
+  return ((answers.value['gas'] || 0) * 2.8);
 }
 
 function electricityEmissionCalc() {
@@ -102,26 +102,26 @@ function transportEmissionCalc() {
            (answers.value['motorcycle'] || 0) * 114 +
            (answers.value['bus'] || 0) * 97 +
            (answers.value['metro'] || 0) * 28 +
-           (answers.value['intercityTrain'] || 0) * 35) * 52) / 1000);
+           (answers.value['intercityTrain'] || 0) * 35) * 4) / 1000);
 }
 
 
 function foodEmissionCalculator() {
   let dietEmission = 0;  
   if (answers.value['diet'] == 'Vegan') {
-    dietEmission = 3 * 365;
+    dietEmission = 3 * 30;
   }
   if (answers.value['diet'] == 'Vegeterian') {
-    dietEmission = 4 * 365;
+    dietEmission = 4 * 30;
   }
   if (answers.value['chicken'] == 'low' || answers.value['redMeat'] == 'low') {
-    dietEmission = 4.67 * 365; 
+    dietEmission = 4.67 * 30; 
   }
   if (answers.value['chicken'] == 'average' || answers.value['redMeat'] == 'average') {
-    dietEmission = 5.93 * 365; 
+    dietEmission = 5.93 * 30; 
   }
   if (answers.value['chicken'] == 'high' || answers.value['redMeat'] == 'high') {
-    dietEmission = 7 * 365; 
+    dietEmission = 7 * 30; 
   }
 
   return dietEmission;
