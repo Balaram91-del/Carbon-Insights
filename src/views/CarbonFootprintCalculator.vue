@@ -51,8 +51,8 @@ function nextIndex() {
       store.totalEmission = calculateCarbonFootprint();
       store.flightEmission = flightEmissionCalc();
       store.petEmission = petEmissionCalc();
-      store.cookintGasEmission = cookingGasEmissionCalc();
-      store.electriciyEmission = electricityEmissionCalc();
+      store.cookingGasEmission = cookingGasEmissionCalc();
+      store.electricityEmission = electricityEmissionCalc();
       store.transportEmission = transportEmissionCalc();
       store.foodEmission = foodEmissionCalculator();
 

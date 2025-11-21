@@ -10,7 +10,22 @@ const carbonFootprint = (store.totalEmission / 1000).toFixed(2);
 
 const distanceCarNeedsToDrive = (carbonFootprint * 1000 * 1000 / 170).toFixed(2);
 
-const aiResponse = await askGemini("How are you ?")
+const userEmissionData = {
+  totalEmission: store.totalEmission,
+  flightEmission: store.flightEmission,
+  petEmission: store.petEmission,
+  cookingGasEmission: store.cookingGasEmission,
+  electricityEmission: store.electricityEmission,
+  transportEmission: store.transportEmission,
+  foodEmission: store.foodEmission
+}
+
+const aiSuggestion = await askGemini(`
+  Here is the emission data of an individual in a month in kg:
+  ${JSON.stringify(userEmissionData, null, 2)}
+  Give very very concise suggestions on how they can reduce their carbon footprint.
+  keep each part of the suggestion in a paragraph
+  `);
 </script>
 
 <template>
@@ -23,12 +38,13 @@ const aiResponse = await askGemini("How are you ?")
       <div class="bar-chart"><BarChart /></div>
       <div class="donought-chart"><PieChart /></div>
     </div>
-    <div class="ai-respose">
-      <p>{{ aiResponse }}</p>
+    <div class="ai-suggestion">
+      <h2>Suggestions on how to reduce your carbon footprint</h2>
+      <p>{{ aiSuggestion }}</p>
     </div>
     <div class="offset-container">
       <h1>Would you like to offset your carbon footprint ?</h1>
-      <a href="#">Proceed</a>
+      <a href="https://unfccc.int/climate-action/united-nations-carbon-offset-platform">Proceed</a>
     </div>
     <!-- <div class="asking-login">
       <h2>Like to keep track of your Carbon Footprint Data ? <router-link >Login</router-link></h2>
@@ -95,8 +111,8 @@ const aiResponse = await askGemini("How are you ?")
   width: 40%;
 }
 
-.offset-container{
-  display: flex;
+.ai-suggestion{
+    display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -114,6 +130,27 @@ const aiResponse = await askGemini("How are you ?")
   padding: 20px;
 }
 
+.ai-suggestion h2{
+  color: #FD4520;
+  font-family: 'Oswald';
+  margin-top: 0;
+}
+
+.ai-suggestion p{
+  color: white;
+  font-family: 'Raleway';
+  margin-top: 0;
+}
+
+.offset-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 20px;
+}
+
 .offset-container h1, .asking-login h2{
   text-align: center;
   color: white;
@@ -127,6 +164,12 @@ const aiResponse = await askGemini("How are you ?")
   color: white;
   font-family: 'Raleway';
   border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.offset-container a:hover{
+  background-color: transparent;
+  border: white solid 2px;
 }
 
 .asking-login{
