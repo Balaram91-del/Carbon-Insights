@@ -34,8 +34,10 @@ nav {
   background: transparent;
 }
 
-a {
+a, .login-btn {
   text-decoration: none;
+  font-weight: 500;
+  font-family: 'Oswald';
 }
 
 .logo {

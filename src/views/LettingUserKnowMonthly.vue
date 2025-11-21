@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1>Let's calculate Your Carbon Footprint of this month by answering some simple questions</h1>
-    <router-link :to="{name:'CarbonFootprintCalculator'}">Proceed</router-link>
+    <router-link :to="{name:'CarbonFootprintCalculator'}">
+      Proceed
+      <i class="ri-arrow-right-fill"></i>
+    </router-link>
   </div>
 </template>
 
@@ -25,9 +28,11 @@ a{
   text-decoration: none;
   color: white;
   font-family: 'Raleway';
-  padding: 10px;
+  padding: 10px 40px;
   background-color: #FD4520;
-  border-radius: 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
 a:hover{

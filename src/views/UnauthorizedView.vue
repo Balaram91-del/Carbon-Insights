@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1>To view this page and keep track of your data please login</h1>
-    <router-link :to="{name: 'login'}">Login</router-link>
+    <router-link :to="{name: 'login'}">
+      Login
+      <i class="ri-login-box-line"></i>
+    </router-link>
   </div>
 </template>
 
@@ -24,9 +27,11 @@ a{
   font-family: 'Raleway';
   background-color: #FD4520;
   color: white;
-  padding: 10px;
+  padding: 15px 30px;
   border-radius: 10px;
   text-decoration: none;
+  font-size: 1.2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
 a:hover{

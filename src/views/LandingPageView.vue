@@ -37,7 +37,7 @@ const showLogin = ref(false);
       <div class="btn-container">
         <!-- <router-link class="joinus-btn" @click.prevent="showLogin = true">Join Us</router-link> -->
         <button class="joinus-btn" @click="showLogin = true">Join Us</button>
-        <router-link class="cfc-btn" to="/dashboard/carbonFootprintCalculator">Calculate Carbon Footprint</router-link>
+        <router-link class="cfc-btn" to="/dashboard/monthlyCarbonFootprint">Calculate Carbon Footprint</router-link>
       </div>
     </div>
 

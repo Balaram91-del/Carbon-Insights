@@ -2,12 +2,15 @@
 import BarChart from '@/components/BarChart.vue';
 import PieChart from '@/components/PieChart.vue';
 import { useFootprintStore } from '@/stores/footprintStore';
+import { askGemini } from '@/services/geminiResponse';
 
 const store = useFootprintStore();
 
 const carbonFootprint = (store.totalEmission / 1000).toFixed(2);
 
 const distanceCarNeedsToDrive = (carbonFootprint * 1000 * 1000 / 170).toFixed(2);
+
+const aiResponse = await askGemini("How are you ?")
 </script>
 
 <template>
@@ -19,6 +22,9 @@ const distanceCarNeedsToDrive = (carbonFootprint * 1000 * 1000 / 170).toFixed(2)
     <div class="graph-container">
       <div class="bar-chart"><BarChart /></div>
       <div class="donought-chart"><PieChart /></div>
+    </div>
+    <div class="ai-respose">
+      <p>{{ aiResponse }}</p>
     </div>
     <div class="offset-container">
       <h1>Would you like to offset your carbon footprint ?</h1>

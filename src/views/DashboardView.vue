@@ -54,7 +54,10 @@ async function Logout() {
       </div>
     </div>
     <div class="dashboard-content">
-      <router-view></router-view>
+      <suspense>
+        <router-view></router-view>
+      </suspense>
+      
     </div>
   </main>
 </template>
