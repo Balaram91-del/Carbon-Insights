@@ -1,18 +1,44 @@
 <script setup>
 import { supabase } from '@/Clients/Supabase';
 import router from '@/router';
-import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
+import { ref, onMounted } from 'vue';
 
 const showSidebar = ref(true);
 
 async function Logout() {
-  const { error } = await supabase.auth.signOut();
-  router.push({name:'home'})
+  await supabase.auth.signOut();
+  localStorage.removeItem("uid");
+  username.value = "username";         // reset UI
+  router.push({ name: 'home' });
 }
 
-let { data: profile, error } = await supabase.from('Profiles').select('username').eq('id', localStorage.getItem('uid')).single();
+async function getUsername() {
+  const uid = localStorage.getItem('uid');
+
+  if (!uid) {
+    return "username";
+  }
+
+  const { data: profile, error } = await supabase
+    .from("Profiles")
+    .select("username")
+    .eq("id", uid)
+    .single();
+
+  if (error || !profile) {
+    return "username";
+  }
+
+  return profile.username;
+}
+
+const username = ref("username");
+
+onMounted(async () => {
+  username.value = await getUsername();
+});
 </script>
+
 
 <template>
   <header>
@@ -23,7 +49,7 @@ let { data: profile, error } = await supabase.from('Profiles').select('username'
     <div class="user-profile">
       <i class="ri-notification-4-line"></i>
       <i class="ri-user-3-line"></i>
-      <h4>{{ profile.username }}</h4>
+      <h4>{{ username }}</h4>
     </div>
   </header>
   <main>
