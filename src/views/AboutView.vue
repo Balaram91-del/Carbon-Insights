@@ -178,7 +178,7 @@ main{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10vh;
+  margin-top: 10%;
   margin-bottom: 10vh;
 }
 
@@ -198,7 +198,7 @@ main{
 .btn-container{
   display: flex;
   justify-content: space-around;
-  width: 30%;
+  width: 40%;
   margin-top: 20px;
 }
 

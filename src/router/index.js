@@ -1,17 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPageView from '../views/LandingPageView.vue'
-import DashboardView from '@/views/DashboardView.vue'
 import DashboardHomeView from '@/views/DashboardHomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import CarbonFootprintCalculator from '@/views/CarbonFootprintCalculator.vue'
 import SettingsView from '@/views/SettingsView.vue'
 import FAQView from '@/views/FAQView.vue'
-import CarbonFootprintAnalysis from '@/views/CarbonFootprintAnalysis.vue'
 import LoginView from '@/views/LoginView.vue'
 import SignupView from '@/views/SignupView.vue'
 import LettingUserKnowMonthly from '@/views/LettingUserKnowMonthly.vue'
 import { supabase } from '@/Clients/Supabase'
 import UnauthorizedView from '@/views/UnauthorizedView.vue'
+import DashboardView from '@/views/DashboardView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -77,7 +76,7 @@ const router = createRouter({
         {
           path: "carbonFootprintAnalysis",
           name: "CarbonFootprintAnalysis",
-          component: CarbonFootprintAnalysis,
+          component: () => import('@/views/CarbonFootprintAnalysis.vue'),
         },
         {
           path: "monthlyCarbonFootprint",
@@ -94,25 +93,32 @@ const router = createRouter({
   ],
 })
 
-//get user
-async function getUser(next) {
+// get user from Supabase
+async function getUser() {
   let localUser = await supabase.auth.getSession();
-  if (localUser.data.session == null) {
-    next("unauthorized")
-  }
-  else {
-    next();
-  }
+  return localUser.data.session !== null;
 }
 
-//auth requirements
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+  const isLoggedIn = !!localStorage.getItem("authToken");
+  
+  // 1) Redirect logged-in users away from home (landing page)
+  if (isLoggedIn && to.name === "home") {
+    return next({ name: "dashboard" });
+  }
+
+  // 2) Protect routes with requiresAuth
   if (to.meta.requiresAuth) {
-    getUser(next);
+    const hasUser = await getUser();
+
+    if (!hasUser) return next("unauthorized");
+
+    return next();   // allow
   }
-  else {
-    next();
-  }
-})
+
+  // 3) Default allow
+  next();
+});
+
 
 export default router

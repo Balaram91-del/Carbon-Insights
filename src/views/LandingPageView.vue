@@ -29,7 +29,7 @@ const showLogin = ref(false);
     </div>
   <section class="hero">
     <div class="hero-content">
-      <h1>Our Carbon Footprint, <br>Our Responsibility.</h1>
+      <h1>Our Carbon <strong>Footprint,</strong>  <br>Our Responsibility.</h1>
       <p>Understand your environmental impact and discover <br>
         personalized ways to reduce your carbon footprint. <br>
          Small changes can make a big difference 
@@ -45,9 +45,9 @@ const showLogin = ref(false);
       <img src="@\assets\Screenshot 2025-09-13 193948.png" alt="">
     </div>
 
-    <div class="scroll-down">
+    <!-- <div class="scroll-down">
       <i class="ri-arrow-down-s-fill"></i>
-    </div>
+    </div> -->
   </section>
   </main>
   
@@ -64,12 +64,16 @@ main{
 section{
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
+  display: flex;
   align-items: center;
-  margin-top: 10%;
-  padding: 0 4%;
+  justify-content: space-between;
+  margin-top: 12%;
+  /* padding: 0 4%; */
   padding-left: 10%;
+}
+
+.hero-content{
+  width: 75%;
 }
 
 .hero-content h1{
@@ -83,7 +87,7 @@ section{
   font-family: 'Raleway';
   color: white;
   line-height: 1.4;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .btn-container{
@@ -120,12 +124,17 @@ section{
   font-size: 1.2rem;
   border-radius: 30px;
   padding: 12px 30px;
-  border: 1.5px solid;
+  border: 2px solid;
 }
 
 .cfc-btn:hover{
   background-color: #FD4520;
   border: none;
+}
+
+.hero-image img{
+  width: 90%;
+  margin: 0%;
 }
 
 .ri-scroll-to-bottom-line{

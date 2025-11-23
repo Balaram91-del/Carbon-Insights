@@ -172,20 +172,17 @@ main{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: auto;
   width: 100%;
   color: white;
 }
 
-.carbonfootprint-heading{
-  height: 20px;
-}
 .card{
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  height: 50%;
+  height: 80%;
   width: 60%;
 }
 

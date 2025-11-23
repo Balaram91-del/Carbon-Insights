@@ -24,39 +24,53 @@ const aiSuggestion = await askGemini(`
   Here is the emission data of an individual in a month in kg:
   ${JSON.stringify(userEmissionData, null, 2)}
   Give very very concise suggestions on how they can reduce their carbon footprint.
-  keep each part of the suggestion in a paragraph
-  `);
+  Format the output ONLY as clean bullet points like:
+  - Suggestion 1\n
+  - Suggestion 2\n  
+`);
+
+const formattedSuggestion = aiSuggestion.replace(/-\+/g, "n-").trim();
 </script>
 
 <template>
-  <div class="container">
-    <div class="carbon-footprint-container">
-      <h1>Your carbon footprint is <br> <strong>{{ carbonFootprint }}</strong> tons <br>this month</h1>
-      <h3>It is equivalent to driving a petrol car <strong>{{ distanceCarNeedsToDrive }}</strong> kms </h3>
-    </div>
-    <div class="graph-container">
-      <div class="bar-chart"><BarChart /></div>
-      <div class="donought-chart"><PieChart /></div>
-    </div>
-    <div class="ai-suggestion">
-      <h2>Suggestions on how to reduce your carbon footprint</h2>
-      <p>{{ aiSuggestion }}</p>
-    </div>
-    <div class="offset-container">
-      <h1>Would you like to offset your carbon footprint ?</h1>
-      <a href="https://unfccc.int/climate-action/united-nations-carbon-offset-platform">Proceed</a>
-    </div>
-    <!-- <div class="asking-login">
-      <h2>Like to keep track of your Carbon Footprint Data ? <router-link >Login</router-link></h2>
-    </div> -->
-    <footer>
-      <h3>this is footer</h3>
-    </footer>
-  </div>
-  
+  <Suspense>
+    <template #default>
+      <div class="container">
+        <div class="carbon-footprint-container">
+          <h1>Your carbon footprint is <br>
+          <strong>{{ carbonFootprint }}</strong> tons <br> this month
+          </h1>
+          <h3>It is equivalent to driving a petrol car
+          <strong>{{ distanceCarNeedsToDrive }}</strong> kms
+          </h3>
+        </div>
+
+        <div class="graph-container">
+          <div class="bar-chart"><BarChart /></div>
+          <div class="donought-chart"><PieChart /></div>
+        </div>
+
+        <div class="ai-suggestion">
+          <h2>Suggestions on how to reduce your carbon footprint</h2>
+          <p>{{ formattedSuggestion }}</p>
+        </div>
+
+        <div class="offset-container">
+          <h1>Would you like to offset your carbon footprint?</h1>
+          <a href="https://unfccc.int/climate-action/united-nations-carbon-offset-platform">Proceed</a>
+        </div>
+      </div>
+    </template>
+    <template #fallback>
+      <div class="loader-container">
+        <div class="loader"></div>
+      </div>
+    </template>
+  </Suspense>
 </template>
 
-<style>
+
+<style scoped>
 .container{
   display: flex;
   flex-direction: column;
@@ -180,9 +194,42 @@ const aiSuggestion = await askGemini(`
   margin-top: 20px;
 }
 
+.loader-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'Raleway';
+}
+
+.loader {    
+  --r1: 154%;
+  --r2: 68.5%;
+  width: 60px;
+  aspect-ratio: 1;
+  border-radius: 50%; 
+  background:
+    radial-gradient(var(--r1) var(--r2) at top   ,#0000 79.5%,#FD4520 80%),
+    radial-gradient(var(--r1) var(--r2) at bottom,#FD4520 79.5%,#0000 80%),
+    radial-gradient(var(--r1) var(--r2) at top   ,#0000 79.5%,#FD4520 80%),
+    #ccc;
+  background-size: 50.5% 220%;
+  background-position: -100% 0%,0% 0%,100% 0%;
+  background-repeat:no-repeat;
+  animation: l9 2s infinite linear;
+}
+@keyframes l9 {
+    33%  {background-position:    0% 33% ,100% 33% ,200% 33% }
+    66%  {background-position: -100%  66%,0%   66% ,100% 66% }
+    100% {background-position:    0% 100%,100% 100%,200% 100%}
+}
+
 footer{
   height: 40vh;
 }
+
+
 
 
 

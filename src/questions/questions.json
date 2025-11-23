@@ -399,8 +399,20 @@
       {
         "id": 1,
         "label1": "None",
-        "label2": "",
+        "label2": "0",
         "label3": 0
+      },
+      {
+        "id":2,
+        "label1": "One",
+        "label2": "1",
+        "label3":1
+      },
+      {
+        "id":3,
+        "label1": "Two",
+        "label2": "2",
+        "label3":2
       }
     ]
   },
@@ -414,8 +426,20 @@
       {
         "id": 1,
         "label1": "None",
-        "label2": "",
+        "label2": "0",
         "label3": 0
+      },
+      {
+        "id":2,
+        "label1": "One",
+        "label2": "1",
+        "label3":1
+      },
+      {
+        "id":3,
+        "label1": "Two",
+        "label2": "2",
+        "label3":2
       }
     ]
   }

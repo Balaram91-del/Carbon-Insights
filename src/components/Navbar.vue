@@ -36,7 +36,7 @@ nav {
 
 a, .login-btn {
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
   font-family: 'Oswald';
 }
 
