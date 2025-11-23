@@ -38,7 +38,7 @@ const formattedSuggestion = aiSuggestion.replace(/-\+/g, "n-").trim();
       <div class="container">
         <div class="carbon-footprint-container">
           <h1>Your carbon footprint is <br>
-          <strong>{{ carbonFootprint }}</strong> tons <br> this month
+          <strong>{{ carbonFootprint }}</strong> tons this month
           </h1>
           <h3>It is equivalent to driving a petrol car
           <strong>{{ distanceCarNeedsToDrive }}</strong> kms

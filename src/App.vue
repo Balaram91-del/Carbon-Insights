@@ -21,4 +21,17 @@ strong{
   color: #FD4520;
   font-weight: bold;
 }
+
+::-webkit-scrollbar {
+  width: 8px; /* or any width you want */
+}
+::-webkit-scrollbar-track {
+  background: white;
+}
+::-webkit-scrollbar-thumb {
+  background-color:#1d3c23;
+  border-radius: 10px; /* optional for rounded look */
+}
+
+
 </style>

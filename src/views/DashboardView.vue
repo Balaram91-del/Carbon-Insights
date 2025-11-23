@@ -28,28 +28,40 @@ async function Logout() {
     <div class="sidebar-holder" v-if="showSidebar">
       <div class="sidebar">
       <div>
-        <i class="ri-dashboard-line"></i>
-        <router-link to="/dashboard">Dashboard</router-link>
+        <router-link to="/dashboard" class="router-link">
+          <i class="ri-dashboard-line"></i>
+          Dashboard
+        </router-link>
       </div>
       <div>
-        <i class="ri-calculator-line"></i>
-        <router-link to="/dashboard/monthlyCarbonFootprint">Carbon Footprint</router-link>
+        <router-link to="/dashboard/monthlyCarbonFootprint" class="router-link">
+          <i class="ri-calculator-line"></i>
+          Carbon Footprint
+        </router-link>
       </div>
       <div>
-        <i class="ri-info-i"></i>
-        <router-link to="/dashboard/about">About</router-link>
+        <router-link to="/dashboard/about" class="router-link">
+          <i class="ri-info-i"></i>
+          About
+        </router-link>
       </div>
       <div>
-        <i class="ri-question-line"></i>
-        <router-link to="/dashboard/FAQ">FAQ</router-link>
+        <router-link to="/dashboard/FAQ" class="router-link">
+          <i class="ri-question-line"></i>
+          FAQ
+        </router-link>
       </div>
       <div>
-        <i class="ri-settings-3-line"></i>
-        <router-link to="/dashboard/settings">Settings</router-link>
+        <router-link to="/dashboard/settings" class="router-link">
+          <i class="ri-settings-3-line"></i>
+          Settings
+        </router-link>
       </div>
       <div>
-        <i class="ri-logout-circle-r-line"></i>
-        <button @click="Logout">Logout</button>
+        <button @click="Logout">
+          <i class="ri-logout-circle-r-line"></i>
+          Logout
+        </button>
       </div>
       </div>
     </div>
@@ -162,7 +174,6 @@ main{
 }
 
 .sidebar div i{
-  color: white;
   margin-right: 10px;
   font-size: 1.5rem;
 }
@@ -173,6 +184,9 @@ main{
   color: white;
   font-family: "Oswald";
   font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dashboard-content{
@@ -191,6 +205,11 @@ main{
 .sidebar button:hover{
   cursor: pointer;
 }
+
+.router-link.router-link-exact-active{
+  color: #FD4520;
+}
+
 
 
 .loader-container{
