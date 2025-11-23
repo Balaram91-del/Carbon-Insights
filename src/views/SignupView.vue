@@ -7,25 +7,41 @@ const email = ref("");
 const password = ref("")
 const username = ref("")
 
-//creat account
+//create account
 async function createAccount() {
-  const { data, error } = await supabase.auth.signUp({
+  // 1. Sign up user
+  const { data: signupData, error: signupError } = await supabase.auth.signUp({
     email: email.value,
     password: password.value,
-    options: {
-      data: {
-        username : username.value
+  });
+
+  if (signupError) {
+    console.log(signupError);
+    return; // stop execution
+  }
+
+  alert("Signup successful! Please verify your email before logging in.");
+
+  // 2. Insert profile (only after successful signup)
+  const { data: profileData, error: profileError } = await supabase
+    .from("Profiles")
+    .insert([
+      {
+        id:signupData.user.id,
+        username: username.value,
+        email_id: email.value
       }
-    }
-  })
-  if (error) {
-    console.log(error)
+    ])
+    .select();
+
+  if (profileError) {
+    console.log(profileError);
+    return;
   }
-  else {
-    alert("Signup successful! Please verify your email before logging in.");
-    router.push({name:'login'})
-  }
+
+  router.push({ name: "login" });
 }
+
 
 </script>
 

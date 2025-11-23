@@ -1,9 +1,18 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import Loader from './components/Loader.vue';
 </script>
 
 <template>
-  <RouterView />
+  <Suspense>
+    <template #default>
+      <RouterView />
+    </template>
+    <template #fallback>
+      <Loader />
+    </template>
+  </Suspense>
+  
 </template>
 
 <style>

@@ -11,6 +11,7 @@ import LettingUserKnowMonthly from '@/views/LettingUserKnowMonthly.vue'
 import { supabase } from '@/Clients/Supabase'
 import UnauthorizedView from '@/views/UnauthorizedView.vue'
 import DashboardView from '@/views/DashboardView.vue'
+import LoginSignUpView from '@/views/LoginSignUpView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,23 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: LandingPageView,
+      // children: [
+      //   {
+      //     path: '',
+      //     name: 'login',
+      //     component: LoginView,
+      //   },
+      //   {
+      //     path: 'signup',
+      //     name: 'signup',
+      //     component: SignupView,
+      //   }
+      // ]
+    },
+    {
+      path: '/signin',
+      name: 'SignIn',
+      component: LoginSignUpView,
       children: [
         {
           path: '',

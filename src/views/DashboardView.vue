@@ -10,6 +10,8 @@ async function Logout() {
   const { error } = await supabase.auth.signOut();
   router.push({name:'home'})
 }
+
+let { data: profile, error } = await supabase.from('Profiles').select('username').eq('id', localStorage.getItem('uid')).single();
 </script>
 
 <template>
@@ -21,7 +23,7 @@ async function Logout() {
     <div class="user-profile">
       <i class="ri-notification-4-line"></i>
       <i class="ri-user-3-line"></i>
-      <h4>username</h4>
+      <h4>{{ profile.username }}</h4>
     </div>
   </header>
   <main>

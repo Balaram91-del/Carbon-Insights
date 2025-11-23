@@ -10,7 +10,7 @@ const showLogin = ref(false);
 <template>
   <Navbar @loginClicked="showLogin = true"/>
   <main>
-    <div v-if="showLogin" class="overlay">
+    <!-- <div v-if="showLogin" class="overlay">
       <button class="cancel-button" @click="showLogin=false">X</button>
       <div class="login-container">
         <div class="login-from">
@@ -26,7 +26,7 @@ const showLogin = ref(false);
           <h3>OUR FOOTPRINT, OUR RESPONSIBILITY</h3>
         </div>
       </div>
-    </div>
+    </div> -->
   <section class="hero">
     <div class="hero-content">
       <h1>Our Carbon <strong>Footprint,</strong>  <br>Our Responsibility.</h1>
@@ -35,8 +35,8 @@ const showLogin = ref(false);
          Small changes can make a big difference 
       </p>
       <div class="btn-container">
-        <!-- <router-link class="joinus-btn" @click.prevent="showLogin = true">Join Us</router-link> -->
-        <button class="joinus-btn" @click="showLogin = true">Join Us</button>
+        <!-- <router-link class="joinus-btn">Join Us</router-link> -->
+        <button class="joinus-btn" @click="router.push({name:'signup'})">Join Us</button>
         <router-link class="cfc-btn" to="/dashboard/monthlyCarbonFootprint">Calculate Carbon Footprint</router-link>
       </div>
     </div>

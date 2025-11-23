@@ -10,16 +10,20 @@ async function login() {
   const { data, error } = await supabase.auth.signInWithPassword({
     email: email.value,
     password: password.value
-  })
+  });
 
   if (error) {
-    console.log(error);
+    console.log("Login error:", error.message);
+    return; // IMPORTANT
   }
-  else {
-    router.push({name:'dashboardHome'})
-  }
-  
+
+  // Login successful
+  const session = data.session;
+  localStorage.setItem("uid", session.user.id);
+
+  router.push({ name: 'dashboardHome' });
 }
+
 </script>
 
 <template>

@@ -13,7 +13,8 @@ const emit = defineEmits(['loginClicked'])
       <router-link to="/">HOME</router-link>
       <router-link to="/dashboard/monthlyCarbonFootprint">CARBON FOOTPRINT</router-link>
       <router-link to="/about">ABOUT</router-link>
-      <button class="login-btn" @click.prevent="$emit('loginClicked')">LOGIN</button>
+      <router-link to="/signin">LOGIN</router-link>
+      <!-- <button class="login-btn" @click.prevent="$emit('loginClicked')">LOGIN</button> -->
     </ul>
 
     <i class="ri-menu-line" id="menu-icon"></i>
@@ -34,7 +35,7 @@ nav {
   background: transparent;
 }
 
-a, .login-btn {
+a{
   text-decoration: none;
   font-weight: 400;
   font-family: 'Oswald';

@@ -50,7 +50,7 @@ defineProps({
           through <br>calculating and reducing your carbon footprint.</h2>
       <div class="btn-container">
         <router-link to="/dashboard/monthlyCarbonFootprint" class="cfc-btn">Calculate your Carbon Footprint</router-link>
-        <router-link :to="{name:'home'}" class="joinus-btn">Join Us</router-link>
+        <router-link :to="{name:'signup'}" class="joinus-btn">Join Us</router-link>
       </div>
     </section>
   </main>
