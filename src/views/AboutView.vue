@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <Navbar v-if="showNavbar"/>
-  <main>
+  <div class="wrapper">
     <section class="about-cf">
       <div class="content-container">
         <h1>Calculate and keep track of your Carbon Footprint with personalized reduction strategies in one platform</h1>
@@ -42,7 +42,7 @@ defineProps({
           <p>Monitor your <strong>improvements</strong> over time and see the positive impact of your sustainable choices.</p>
         </div>
       </div>
-    </section>
+    </section>    
 
     <section class="joinus-section">
       <h1>Ready to join our mission ?</h1>
@@ -53,11 +53,21 @@ defineProps({
         <router-link :to="{name:'signup'}" class="joinus-btn">Join Us</router-link>
       </div>
     </section>
-  </main>
+    
+    <section class="visit-faq">
+      <h3>
+          Want to learn more ? Visit our <strong>FAQ</strong> page
+          <router-link to="/dashboard/FAQ" class="faq-btn">
+            FAQ
+            <i class="ri-arrow-right-fill"></i>
+          </router-link>
+        </h3>
+    </section>
+  </div>
 </template>
 
 <style scoped>
-main{
+.wrapper{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -171,6 +181,20 @@ main{
   font-size: 1.2rem;
 }
 
+.faq-btn{
+  text-decoration: none;
+  color: white;
+  padding: 10px 20px;
+  background-color: #4d9559;
+  border-radius: 20px;
+}
+
+.faq-btn:hover{
+  cursor: pointer;
+  background-color: transparent;
+  border: solid white 2px;
+}
+
 .joinus-section{
   width: 100%;
   height: 40vh;
@@ -230,5 +254,14 @@ main{
 .joinus-btn:hover{
   background-color: #4d9559;
   border: none;
+}
+
+.visit-faq{
+  margin: 20px 0;
+}
+
+.visit-faq h3{
+  color: white;
+  font-family: 'Raleway';
 }
 </style>

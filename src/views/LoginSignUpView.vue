@@ -93,7 +93,7 @@ main{
 }
 
 .btn-container{
-  width: 100%;
+  width: 60%;
   display: flex;
   justify-content: end;
 }
