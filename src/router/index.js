@@ -12,6 +12,7 @@ import { supabase } from '@/Clients/Supabase'
 import UnauthorizedView from '@/views/UnauthorizedView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import LoginSignUpView from '@/views/LoginSignUpView.vue'
+import EmailConfirmationView from '@/views/EmailConfirmationView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,6 +58,11 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
+    },
+    {
+      path: '/confirmation',
+      name: 'confirm',
+      component: EmailConfirmationView,
     },
     {
       path: '/dashboard',

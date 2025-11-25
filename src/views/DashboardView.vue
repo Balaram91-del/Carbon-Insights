@@ -152,7 +152,7 @@ main{
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 90vh;
+  height: auto;
 }
 
 .sidebar-holder{

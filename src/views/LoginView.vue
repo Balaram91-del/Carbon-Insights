@@ -1,12 +1,17 @@
 <script setup>
 import { supabase } from '@/Clients/Supabase';
+import Loader from '@/components/Loader.vue';
 import router from '@/router';
 import { ref } from 'vue';
+
+const loading = ref(false);
 
 const email = ref("")
 const password = ref("")
 
 async function login() {
+  loading.value = true;
+
   const { data, error } = await supabase.auth.signInWithPassword({
     email: email.value,
     password: password.value
@@ -21,20 +26,27 @@ async function login() {
   const session = data.session;
   localStorage.setItem("uid", session.user.id);
 
+  loading.value = false;
+
   router.push({ name: 'dashboardHome' });
 }
 
 </script>
 
 <template>
-  <div class="container">
+  <Loader v-if="loading"/>
+
+  <div v-else class="container">
     <input type="email" placeholder="E-mail" required v-model="email">
     <input type="password" placeholder="password" v-model="password" required>
     <div class="button-holder">
       <p>Forgot password ?</p>
       <button @click="login">Login</button>
     </div>
-    <p>Don't have an account? signUp</p>
+    <p>
+      Don't have an account? 
+      <router-link :to="{name: 'signup'}" class="signup-btn">SignUp</router-link>
+    </p>
     
   </div>
 </template>
@@ -83,4 +95,13 @@ async function login() {
   p{
     color: #0d4d10;
   }
+
+.signup-btn{
+  text-decoration: none;
+  color: #FD4520;
+}
+
+.signup-btn:hover{
+  border-bottom: 2px solid #FD4520;;
+}
 </style>

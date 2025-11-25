@@ -182,7 +182,7 @@ main{
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  height: 80%;
+  height: 70%;
   width: 60%;
 }
 

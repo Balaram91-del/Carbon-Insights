@@ -1,10 +1,19 @@
 <script setup>
 import Navbar from '@/components/Navbar.vue';
 import router from '@/router';
-
+import { supabase } from '@/Clients/Supabase';
+import { onMounted } from 'vue';
 import { ref } from 'vue';
 
-const showLogin = ref(false);
+onMounted(async () => {
+  const { data } = await supabase.auth.getUser();
+
+  if (data.user) {
+    router.replace('/dashboard')
+  }
+})
+
+// const showLogin = ref(false);
 </script>
 
 <template>

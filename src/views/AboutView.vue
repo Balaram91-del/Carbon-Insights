@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <Navbar v-if="showNavbar"/>
+  <Navbar v-if="showNavbar" class="navbar"/>
   <div class="wrapper">
     <section class="about-cf">
       <div class="content-container">
@@ -44,6 +44,16 @@ defineProps({
       </div>
     </section>    
 
+        <section class="visit-faq">
+      <h3>
+          Want to learn more ? Visit our <strong>FAQ</strong> page
+          <router-link to="/dashboard/FAQ" class="faq-btn">
+            FAQ
+            <i class="ri-arrow-right-fill"></i>
+          </router-link>
+        </h3>
+    </section>
+
     <section class="joinus-section">
       <h1>Ready to join our mission ?</h1>
       <h2>Be part of the global movement creating environmental change 
@@ -52,16 +62,6 @@ defineProps({
         <router-link to="/dashboard/monthlyCarbonFootprint" class="cfc-btn">Calculate your Carbon Footprint</router-link>
         <router-link :to="{name:'signup'}" class="joinus-btn">Join Us</router-link>
       </div>
-    </section>
-    
-    <section class="visit-faq">
-      <h3>
-          Want to learn more ? Visit our <strong>FAQ</strong> page
-          <router-link to="/dashboard/FAQ" class="faq-btn">
-            FAQ
-            <i class="ri-arrow-right-fill"></i>
-          </router-link>
-        </h3>
     </section>
   </div>
 </template>
@@ -74,13 +74,17 @@ defineProps({
   justify-content: center;
 }
 
+.navbar{
+  position: relative;
+}
+
 .about-cf{
   height: 50vh;
   width: 80vw;
   /* background-color: #c5dcd0; */
   display: flex;
   flex-direction: row;
-  margin-top: 20vh;
+  margin-top: 5%;
   justify-content: center;
   align-items: center;
 }
@@ -133,7 +137,7 @@ defineProps({
 .benefit-section{
   margin-top: 10vh;
   width: 80%;
-  height: 50vh;
+  height: auto;
   /* background-color: #7caa92; */
 }
 
@@ -202,7 +206,7 @@ defineProps({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10%;
+  /* margin-top: 10%; */
   margin-bottom: 10vh;
 }
 

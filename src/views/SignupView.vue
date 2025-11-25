@@ -1,14 +1,30 @@
 <script setup>
 import { supabase } from '@/Clients/Supabase';
+import Loader from '@/components/Loader.vue';
 import router from '@/router';
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+
+const loading = ref(false);
+
+const ShowVerifyMessage = ref(false);
 
 const email = ref("");
-const password = ref("")
-const username = ref("")
+const password = ref("");
+const username = ref("");
 
-//create account
+let pollInterval = null;
+
+// Create Account
 async function createAccount() {
+
+  if (!email.value || !password.value || !username.value) {
+  alert("Please fill all fields");
+  loading.value = false;
+  return;
+}
+
+  loading.value = true;
+
   // 1. Sign up user
   const { data: signupData, error: signupError } = await supabase.auth.signUp({
     email: email.value,
@@ -17,40 +33,68 @@ async function createAccount() {
 
   if (signupError) {
     console.log(signupError);
-    return; // stop execution
-  }
-
-  alert("Signup successful! Please verify your email before logging in.");
-
-  // 2. Insert profile (only after successful signup)
-  const { data: profileData, error: profileError } = await supabase
-    .from("Profiles")
-    .insert([
-      {
-        id:signupData.user.id,
-        username: username.value,
-        email_id: email.value
-      }
-    ])
-    .select();
-
-  if (profileError) {
-    console.log(profileError);
+    loading.value = false;
     return;
   }
 
-  router.push({ name: "login" });
+  // 2. Insert profile row
+  const { error: profileError } = await supabase
+    .from("Profiles")
+    .insert({
+      id: signupData.user.id,
+      username: username.value,
+      email_id: email.value,
+    });
+
+  if (profileError) {
+    console.log(profileError);
+    loading.value = false;
+    return;
+  }
+
+  loading.value = false;
+
+  // alert("Signup successful! Please verify your email.\nThis page will auto-redirect after verification.");
+  ShowVerifyMessage.value = true;
 }
 
+// --------------------------
+// AUTO POLLING FOR VERIFY CHECK
+// --------------------------
+onMounted(() => {
+  pollInterval = setInterval(async () => {
+    const { data } = await supabase.auth.getUser();
 
+    // If user exists AND email is verified
+    if (data.user && data.user.email_confirmed_at) {
+      clearInterval(pollInterval);
+      router.replace('/dashboard');
+    }
+  }, 4000); // every 4 seconds
+});
+
+onBeforeUnmount(() => {
+  if (pollInterval) clearInterval(pollInterval);
+});
 </script>
 
 <template>
-  <div class="signup-form">
+  <Loader v-if="loading"/>
+
+  <div class="verify-message-container" v-else-if="ShowVerifyMessage">
+    <div class="verify-message">
+      <p>Signup successful! Please verify your email. <br>
+        This page will auto-redirect after verification.
+      </p>
+    </div>
+    <Loader />
+  </div>
+
+  <div v-else class="signup-form">
     <input type="text" placeholder="Username" required v-model="username">
     <input type="email" placeholder="E-mail" required v-model="email">
     <input type="password" placeholder="password" required v-model="password">
-    <button class="signup-btn" @click="createAccount">Sign Up</button>
+    <button class="signup-btn" @click="createAccount" :disabled="loading">Sign Up</button>
     <p class="info-message"></p>
   </div>
 </template>
@@ -90,7 +134,17 @@ input::placeholder{
   margin-top: 20px;
 }
 
-alert{
-  background-color: #0d4d10;
+.verify-message{
+  background-color: #98dc9c;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: #0d4d10 solid 2px;
+}
+
+.verify-message p{
+  color: #08280a;
+  font-family: 'Raleway';
 }
 </style>
