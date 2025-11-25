@@ -2,7 +2,9 @@
 import { RouterLink, RouterView } from 'vue-router'
 import Loader from './components/Loader.vue';
 import { inject } from '@vercel/analytics';
+import {injectSpeedInsights} from '@vercel/speed-insights'
 
+injectSpeedInsights();
 inject();
 </script>
 
