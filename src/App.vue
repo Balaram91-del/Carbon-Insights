@@ -1,6 +1,9 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Loader from './components/Loader.vue';
+import { inject } from '@vercel/analytics';
+
+inject();
 </script>
 
 <template>
