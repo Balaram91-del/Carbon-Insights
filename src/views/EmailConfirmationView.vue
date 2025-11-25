@@ -1,26 +1,30 @@
 <script setup>
 import { supabase } from '@/Clients/Supabase';
 import router from '@/router';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+
+const showThankYouMessage = ref(false)
 
 onMounted(async () => {
-  // Check if the user session is available
   const { data } = await supabase.auth.getUser();
 
   if (data.user) {
-    // User is logged in → Send them to dashboard
-    router.replace('/dashboard');
+    // User logged in → show message for 2 seconds → redirect
+    showThankYouMessage.value = true
+    setTimeout(() => {
+      router.replace('/dashboard');
+    }, 2000);
   } else {
-    // No session exists → Ask them to log in
-    router.replace('/signin');
+    // User not logged in → show message forever, no redirect
+    showThankYouMessage.value = true
   }
 });
 </script>
 
 <template>
-  <main>
+  <main v-if="showThankYouMessage">
     <h1>Thank you for verifying your email...</h1>
-    <h2>Now you can open the site again</h2>
+    <h2>Now please sign in manually</h2>
   </main>
 </template>
 
