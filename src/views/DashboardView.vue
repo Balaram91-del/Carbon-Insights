@@ -1,9 +1,12 @@
 <script setup>
 import { supabase } from '@/Clients/Supabase';
 import router from '@/router';
+import { useFootprintStore } from '@/stores/footprintStore';
 import { ref, onMounted } from 'vue';
 
 const showSidebar = ref(true);
+
+const store = useFootprintStore();
 
 async function Logout() {
   await supabase.auth.signOut();
@@ -36,6 +39,7 @@ const username = ref("username");
 
 onMounted(async () => {
   username.value = await getUsername();
+  store.username = username;
 });
 </script>
 
@@ -144,6 +148,7 @@ header{
 .user-profile i, .user-profile h4{
   margin-left: 25px;
   font-size: 1.5rem;
+  font-family: 'KoHo';
 }
 
 main{
@@ -189,7 +194,7 @@ main{
       #113a15
     );
     background-size: 30px;
-    border-radius: 30px;
+    border-radius: 10px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 

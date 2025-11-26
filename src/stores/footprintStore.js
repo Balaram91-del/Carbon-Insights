@@ -9,6 +9,7 @@ export const useFootprintStore = defineStore('footprint', () => {
   const petEmission = ref(0);
   const foodEmission = ref(0);
   const cookingGasEmission = ref(0);
+  const username = ref("")
 
-  return {totalEmission, flightEmission, electricityEmission, transportEmission, petEmission, foodEmission, cookingGasEmission}
+  return {totalEmission, flightEmission, electricityEmission, transportEmission, petEmission, foodEmission, cookingGasEmission, username}
 })

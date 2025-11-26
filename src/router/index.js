@@ -13,6 +13,7 @@ import UnauthorizedView from '@/views/UnauthorizedView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import LoginSignUpView from '@/views/LoginSignUpView.vue'
 import EmailConfirmationView from '@/views/EmailConfirmationView.vue'
+import TiredView from '@/views/TiredView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -111,6 +112,11 @@ const router = createRouter({
           path: "unauthorized",
           name: "Unauthorized",
           component: UnauthorizedView,
+        },
+        {
+          path: "tired",
+          name: "Tired",
+          component: TiredView,
         }
       ]
     },

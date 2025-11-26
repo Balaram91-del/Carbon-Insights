@@ -57,25 +57,6 @@ async function createAccount() {
   // alert("Signup successful! Please verify your email.\nThis page will auto-redirect after verification.");
   ShowVerifyMessage.value = true;
 }
-
-// --------------------------
-// AUTO POLLING FOR VERIFY CHECK
-// --------------------------
-onMounted(() => {
-  pollInterval = setInterval(async () => {
-    const { data } = await supabase.auth.getUser();
-
-    // If user exists AND email is verified
-    if (data.user && data.user.email_confirmed_at) {
-      clearInterval(pollInterval);
-      router.replace('/dashboard');
-    }
-  }, 4000); // every 4 seconds
-});
-
-onBeforeUnmount(() => {
-  if (pollInterval) clearInterval(pollInterval);
-});
 </script>
 
 <template>
@@ -84,7 +65,8 @@ onBeforeUnmount(() => {
   <div class="verify-message-container" v-else-if="ShowVerifyMessage">
     <div class="verify-message">
       <p>Signup successful! Please verify your email. <br>
-        This page will auto-redirect after verification.
+        After verifying your email please 
+        <router-link :to="{name:'login'}" class="login-btn">Login</router-link>
       </p>
     </div>
     <Loader />
@@ -113,6 +95,11 @@ onBeforeUnmount(() => {
     font-size: 1.125rem;
     padding: 10px 5px;
     border: none;
+    color: #0d4d10;
+}
+
+input:focus{
+  outline: #0d4d10 solid 2px;
 }
 
 input::placeholder{
@@ -146,5 +133,14 @@ input::placeholder{
 .verify-message p{
   color: #08280a;
   font-family: 'Raleway';
+}
+
+.login-btn{
+  text-decoration: none;
+  color: #FD4520;
+}
+
+.login-btn:hover{
+  border-bottom: 2px solid #FD4520;;
 }
 </style>

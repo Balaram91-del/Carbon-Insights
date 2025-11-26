@@ -4,8 +4,13 @@ import q from "@/questions/questions.json"
 import router from "@/router";
 import { ref } from "vue";
 import { useFootprintStore } from "@/stores/footprintStore";
+import { supabase } from "@/Clients/Supabase";
 
 const store = useFootprintStore();
+
+// const currentDate = new Date();
+// const year = currentDate.getFullYear();
+// const month = currentDate.getMonth();
 
 const answers = ref({
   longFlights: null,
@@ -55,6 +60,16 @@ function nextIndex() {
       store.electricityEmission = electricityEmissionCalc();
       store.transportEmission = transportEmissionCalc();
       store.foodEmission = foodEmissionCalculator();
+
+      // async function enterFootprintData() {
+      //   const { data, error } = await supabase.from('UserFootprintData').insert([
+      //     {
+      //       year: year,
+      //       month: month,
+      //       carbon-footprint: totalEmission
+      //     }
+      //   ]).select()
+      // }
 
       router.push({name:'CarbonFootprintAnalysis'})
     }
@@ -235,7 +250,7 @@ button{
   cursor: pointer; */
 
   background: #4d9559;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 5px 10px;
   font-size: 1.2rem;
   width: 100%;
@@ -251,7 +266,7 @@ input{
   border: none;
   font-size: 1.2rem;
   margin-top: 20px;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 23px 0px;
   justify-content: space-between;
   font-family: 'Raleway';

@@ -70,6 +70,11 @@ async function login() {
     font-size: 1.125rem;
     padding: 10px 5px;
     border: none;
+    color: #0d4d10;
+  }
+
+  .container input:focus{
+    outline: #0d4d10 solid 2px;
   }
 
   input::placeholder{
